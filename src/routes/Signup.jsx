@@ -1,15 +1,56 @@
 import React from "react";
 import { Notebook } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+
 
 function Signup() {
 
   const [email, setEmail] = useState();
-
   const [password, setPassword] = useState();
-
   const [passwordConfirm, setPasswordConfirm] = useState();
+
+
+  
+  const [loading, setLoading] = useState();
+  const [error, setError] = useState();
+
+
+  const {signup} = useAuth();
+  const navigate = useNavigate();
+
+  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+
+    if(!email  || !password || !passwordConfirm){
+      return setError("Please fill in all fields")
+    }
+
+    if (password !== passwordConfirm) {
+      return setError("Password do not match");
+    }
+
+    if (password.length < 8) {
+      return setError("Password must be at least 8 characters");
+    }
+
+    try{
+      setLoading(true);
+      await signup(email,password)
+      navigate('/dashboard')
+    }catch(err){
+      setError("Failed to create an account: " + (err.message || "Please try again"))
+
+    }finally{
+      setLoading(false)
+    }
+
+  }
 
 
   return (
@@ -22,7 +63,12 @@ function Signup() {
         </div>
 
         {/* input form */}
-        <form>
+
+        {
+          error && (<div className="bg-red-50 text-red-700 p-3 rounded-md mb-4 text-sm">{error}</div>)
+        }
+
+        <form onSubmit={handleSubmit}>
           <div className="mt-4">
             {/* email input */}
             <label
@@ -33,6 +79,7 @@ function Signup() {
             </label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               type="email"
               value={email}
@@ -50,6 +97,7 @@ function Signup() {
             </label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              onChange={(e) => setPassword(e.target.value)}
               id="password"
               type="password"
               value={password}
@@ -66,6 +114,7 @@ function Signup() {
               </label>
               <input
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                onChange={(e) => setPasswordConfirm(e.target.value)}
                 id="password-confirm"
                 type="password"
                 value={passwordConfirm}
@@ -81,8 +130,9 @@ function Signup() {
             focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50
             disabled:cursor-not-allowed mt-4"
             type="submit"
+            disabled={loading}
           >
-            sign up
+            {loading ? "Creating Account" : "Sign Up"}
           </button>
         </form>
         {/* option 2 link for sign in */}
