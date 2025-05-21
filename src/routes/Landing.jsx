@@ -11,7 +11,7 @@ function Landing() {
             <Notebook className="h-16 w-16 text-indigo-600" />
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-600 max-w-2xl max-auto, mb-8">
+          <h1 className=" text-4xl md:text-5xl font-bold text-gray-600 max-2xl max-auto, mb-8">
             Capture your ideas with quickNotes
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
@@ -37,9 +37,9 @@ function Landing() {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="bg-white p-6 rounded-xl shadow-sm border border-grey-100">
-            <div>
-              <Zap className="h-6 w-6 text-indigo-600 mr-3" />
-              <h3 className="text-lg font-semibold text-gray-900">
+            <div className="flex flex-col items-center">
+              <Zap className=" h-6 w-6 text-indigo-600 mr-3" />
+              <h3 className="text-lg py-2 font-semibold text-gray-900">
                 Lightnig Fast
               </h3>
               <p className="text-gray-600">
@@ -50,25 +50,27 @@ function Landing() {
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div>
+            <div className="flex flex-col items-center">
               <Lock className="h-6 w-6 text-indigo-600 mr-3" />
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg py-2 font-semibold text-gray-900">
                 Secure & Private
               </h3>
               <p className="text-gray-600">
-                Your Notes are protected with enterprise-grade security and encryption
+                Your Notes are protected with enterprise-grade security and
+                encryption
               </p>
             </div>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div>
+            <div className="flex flex-col items-center">
               <CheckCircle className="h-6 w-6 text-indigo-600 mr-3" />
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg py-2 font-semibold text-gray-900">
                 Easy to Use
               </h3>
               <p className="text-gray-600">
-                Clean and intuitive interface that lets you focus on what matters most
+                Clean and intuitive interface that lets you focus on what
+                matters most
               </p>
             </div>
           </div>

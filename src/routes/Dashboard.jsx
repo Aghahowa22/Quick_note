@@ -1,8 +1,11 @@
+import NoteCard from "../component/NoteCard";
+import NoteForm from "../component/NoteForm";
 
 function Dashboard() {
     return(
         <div>
-           <h1>My Dashboard</h1>
+           <NoteForm />
+           <NoteCard />
         </div>
     )
 }

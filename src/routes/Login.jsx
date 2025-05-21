@@ -112,7 +112,7 @@ function Login() {
               to="/signup"
               className="text-indigo-600 hover:text-indigo-800 font-medium px-2"
             >
-              signup
+              sign up
             </Link>
           </p>
         </div>
