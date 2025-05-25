@@ -43,7 +43,7 @@ function Landing() {
                 Lightnig Fast
               </h3>
               <p className="text-gray-600">
-                reate and access your notes instantly wiht our real-time
+                read and access your notes instantly with our real-time
                 technology
               </p>
             </div>
@@ -56,7 +56,7 @@ function Landing() {
                 Secure & Private
               </h3>
               <p className="text-gray-600">
-                Your Notes are protected with enterprise-grade security and
+                Your notes are protected with enterprise-grade security and
                 encryption
               </p>
             </div>

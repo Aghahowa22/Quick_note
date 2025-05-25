@@ -23,7 +23,8 @@ function NoteForm() {
      setSuccess(false);
 
      if(!title.trim()) {
-        return error("Tittle is required")
+      return setError("Title is required");
+        
      }
 
      try{
@@ -61,7 +62,7 @@ function NoteForm() {
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlfor="title"  className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+          <label htmlFor="title"  className="block text-sm font-medium text-gray-700 mb-1">Title</label>
           <input
             id="title"
             type="text"
@@ -73,7 +74,7 @@ function NoteForm() {
         </div>
 
         <div>
-          <label htmlfor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+          <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
           <textarea
             id="content"
             type="text"
