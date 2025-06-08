@@ -17,7 +17,7 @@ function Dashboard() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { currentUser } = useAuth();
+  const { currentUser,toggle } = useAuth();
 
   useEffect(() => {
     setLoading(true);
@@ -57,36 +57,52 @@ function Dashboard() {
     <>
       <div>
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-1">My Notes</h1>
-          <p className="text-gray-600">Create and manage your personal notes</p>
+          <h1
+            className={
+              toggle
+                ? "text-2xl font-bold text-white mb-1"
+                : "text-2xl font-bold text-gray-900 mb-1"
+            }
+          >
+            My Notes
+          </h1>
+          <p className={toggle ? "text-white" : "text-gray-600"}>
+            Create and manage your personal notes
+          </p>
         </div>
 
         <NoteForm />
 
-
-        {error &&  (<div className="bg-red text-red-700 p-4 rounded-md mb-6 flex items-center">
+        {error && (
+          <div className="bg-red text-red-700 p-4 rounded-md mb-6 flex items-center">
             <FileWarning className=" h-5 w-5" />
             <span>{error}</span>
-        </div>)}
+          </div>
+        )}
 
-
-
-        {
-            loading ? (
-            <div className="text-center py-12">
-                <div className="animate-pulse text-indigo-600">Loading notes...</div>
-            </div>) : notes.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {notes.map(note => (
-                    <NoteCard key={note.id} note={note}/>
-                ))}
-            </div>) : (
-            <div className="text-center py-12 bg-gray-50 rounded-lg border border-gray-100">
-             <StickyNote className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-             <h3 className="text-lg font-medium text-gray-900 mb-1">No notes yet</h3>
-             <p className="text-gray-600 mb-4">Create your first not to get started</p>
-            </div>)
-        }
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-pulse text-indigo-600">
+              Loading notes...
+            </div>
+          </div>
+        ) : notes.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {notes.map((note) => (
+              <NoteCard key={note.id} note={note} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 bg-gray-50 rounded-lg border border-gray-100">
+            <StickyNote className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <h3 className="text-lg font-medium text-gray-900 mb-1">
+              No notes yet
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Create your first not to get started
+            </p>
+          </div>
+        )}
       </div>
     </>
   );

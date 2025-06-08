@@ -15,7 +15,7 @@ function NoteForm() {
 
    const [success, setSuccess] = useState(false);
 
-   const {currentUser} = useAuth();
+   const {currentUser, toggle} = useAuth();
 
     const handleSubmit = async (e) => {
      e.preventDefault();
@@ -51,18 +51,49 @@ function NoteForm() {
 
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+    <div
+      className={
+        toggle
+          ? "bg-zinc-800 rounded-lg shadow-md p-6 mb-8"
+          : "bg-white rounded-lg shadow-md p-6 mb-8"
+      }
+    >
       <div className="flex items-center mb-4">
         <PenLine className=" h-5  w-5 text-indigo-600 mr-2" />
-        <h2 className="text-xl font-semibold text-gray-800">Add a new Note</h2>
+        <h2
+          className={
+            toggle
+              ? "text-xl font-semibold text-white"
+              : "text-xl font-semibold text-gray-800"
+          }
+        >
+          Add a new Note
+        </h2>
       </div>
 
-      {error && <div className="bg-red-50 text-red-700 p-3 rounded-md mb-4 text-sm">{error}</div>}
-      {success && <div className="bg-green-50 text-green-700 p-2 rounded-md mb-4 text-sm">Note created successfully!</div>}
+      {error && (
+        <div className="bg-red-50 text-red-700 p-3 rounded-md mb-4 text-sm">
+          {error}
+        </div>
+      )}
+      {success && (
+        <div className="bg-green-50 text-green-700 p-2 rounded-md mb-4 text-sm">
+          Note created successfully!
+        </div>
+      )}
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="title"  className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+          <label
+            htmlFor="title"
+            className={
+              toggle
+                ? "block text-sm font-medium text-white mb-1"
+                : "block text-sm font-medium text-gray-700 mb-1"
+            }
+          >
+            Title
+          </label>
           <input
             id="title"
             type="text"
@@ -74,7 +105,16 @@ function NoteForm() {
         </div>
 
         <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+          <label
+            htmlFor="content"
+            className={
+              toggle
+                ? "block text-sm font-medium text-white mb-1"
+                : "block text-sm font-medium text-gray-700 mb-1"
+            }
+          >
+            Content
+          </label>
           <textarea
             id="content"
             type="text"
@@ -86,8 +126,12 @@ function NoteForm() {
           />
         </div>
 
-        <button type="submit" className="w-full bg-indigo-600 text-white py-2 my-4 rounded-md hover:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
-           {loading ? "Creating..." :  "Create Note"}
+        <button
+          type="submit"
+          className="w-full bg-indigo-600 text-white py-2 my-4 rounded-md hover:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={loading}
+        >
+          {loading ? "Creating..." : "Create Note"}
         </button>
       </form>
     </div>

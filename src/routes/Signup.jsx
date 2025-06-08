@@ -17,7 +17,7 @@ function Signup() {
   const [error, setError] = useState();
 
 
-  const {signup} = useAuth();
+  const {signup,toggle} = useAuth();
   const navigate = useNavigate();
 
   
@@ -54,26 +54,49 @@ function Signup() {
 
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <div className="bg-white rounded-lg shadow-md p-8">
+    <div className=" max-w-md mx-auto mt-10">
+      <div
+        className={
+          toggle
+            ? "bg-zinc-800 rounded-lg shadow-md p-8"
+            : "bg-white rounded-lg shadow-md p-8"
+        }
+      >
         <div className="flex flex-col items-center mb-6">
           <Notebook className="h-12 w-12 text-indigo-600 mb-2" />
-          <h2 className="text-2xl font-bold text-gray-900"> Create Account</h2>
-          <p className="text-gray-600">Start taking your note today</p>
+          <h2
+            className={
+              toggle
+                ? "text-2xl font-bold text-white"
+                : "text-2xl font-bold text-gray-900"
+            }
+          >
+            {" "}
+            Create Account And
+          </h2>
+          <p className={toggle ? "text-white" : "text-gray-600"}>
+            Start taking your note today
+          </p>
         </div>
 
         {/* input form */}
 
-        {
-          error && (<div className="bg-red-50 text-red-700 p-3 rounded-md mb-4 text-sm">{error}</div>)
-        }
+        {error && (
+          <div className="bg-red-50 text-red-700 p-3 rounded-md mb-4 text-sm">
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="mt-4">
             {/* email input */}
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className={
+                toggle
+                  ? "block text-sm font-medium text-white mb-1"
+                  : "block text-sm font-medium text-gray-700 mb-1"
+              }
             >
               Email
             </label>
@@ -91,7 +114,11 @@ function Signup() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className={
+                toggle
+                  ? "block text-sm font-medium text-white mb-1"
+                  : "block text-sm font-medium text-gray-700 mb-1"
+              }
             >
               Password
             </label>
@@ -108,7 +135,11 @@ function Signup() {
             <div className="mb-6">
               <label
                 htmlFor="password-confirm"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className={
+                  toggle
+                    ? "block text-sm font-medium text-white mb-1"
+                    : "block text-sm font-medium text-gray-700 mb-1"
+                }
               >
                 Comfirm password
               </label>
@@ -137,7 +168,7 @@ function Signup() {
         </form>
         {/* option 2 link for sign in */}
         <div className="mt-6 text-center text-sm">
-          <p className="text-gray-600">
+          <p className={toggle ? "text-white" : "text-gray-600"}>
             Already have an account ?
             <Link
               to="/signup"

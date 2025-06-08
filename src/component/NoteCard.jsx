@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebaseconfig";
-import { Trash2 } from "lucide-react";
+import { PenLine, Trash2 } from "lucide-react";
 
 function NoteCard({ note }) {
   const [deleting, setDeleting] = useState(false);
@@ -45,24 +45,27 @@ function NoteCard({ note }) {
           <h3 className="text-lg font-medium text-gray-900 line-clamp-1">
             {note.title}
           </h3>
-          <button
-            className={`text-sm flex items-center justify-center p-1 rounded-full transition-colors ${
-              confirmDelete
-                ? "bg-red-400 text-red-600"
-                : "text-gray-400 hover:text-red-500 hover:bg-red-50"
-            }`}
-            disabled={deleting}
-            onClick={handleDelete}
-          >
-            <Trash2 className="h-4 w-4" />
-          </button>
+          <div className="flex flex-row gap-6">
+            <button className="text-gray-400 hover:text-green-700 transition-colors">
+              <PenLine />
+            </button>
+            <button
+              className={`text-sm flex items-center justify-center p-1 rounded-full transition-colors ${
+                confirmDelete
+                  ? "bg-red-400 text-red-600"
+                  : "text-gray-400 hover:text-red-500 hover:bg-red-50"
+              }`}
+              disabled={deleting}
+              onClick={handleDelete}
+            >
+              <Trash2 className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
         <div>
           {note.content || (
-            <p className="">
-              No content or description for the title
-            </p>
+            <p className="">No content or description for the title</p>
           )}
         </div>
 

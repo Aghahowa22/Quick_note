@@ -23,6 +23,16 @@ export function AuthProvider({children}){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    const [theme, setTheme] = useState("");
+    const [toggle, setToggle] = useState("");
+
+
+    async function toggleMode () {
+      setToggle(!toggle);
+    };
+
+  
+
     // sign up function
     async function signup(email,password){
 
@@ -81,8 +91,10 @@ export function AuthProvider({children}){
         logout,
         signup,
         login,
+        toggleMode,
         error,
-        loading
+        loading,
+        toggle,
     }
     // component to be used in our application
     return(
