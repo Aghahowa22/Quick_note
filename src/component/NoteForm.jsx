@@ -13,9 +13,9 @@ function NoteForm() {
   const [error, setError] = useState("");
 
 
-   const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-   const {currentUser, toggle} = useAuth();
+  const {currentUser, toggle} = useAuth();
 
     const handleSubmit = async (e) => {
      e.preventDefault();

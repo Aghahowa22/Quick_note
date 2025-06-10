@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseconfig";
 import { PenLine, Trash2 } from "lucide-react";
 
@@ -38,6 +38,23 @@ function NoteCard({ note }) {
     }
   };
 
+  const handleUpdate = async () => {
+
+    try{
+
+      await updateDoc(doc(db, "notes", note.id), {
+        title: note.title,
+        content: note.content,
+      });
+
+    }catch(err){
+      console.log(err)
+
+    }
+      
+    
+  }
+
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200">
       <div className="p-4">
@@ -46,7 +63,7 @@ function NoteCard({ note }) {
             {note.title}
           </h3>
           <div className="flex flex-row gap-6">
-            <button className="text-gray-400 hover:text-green-700 transition-colors">
+            <button onClick={handleUpdate} className="text-gray-400 hover:text-green-700 transition-colors">
               <PenLine />
             </button>
             <button
