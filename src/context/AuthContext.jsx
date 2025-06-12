@@ -23,7 +23,6 @@ export function AuthProvider({children}){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    const [theme, setTheme] = useState("");
     const [toggle, setToggle] = useState("");
 
 

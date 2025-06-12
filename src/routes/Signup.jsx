@@ -171,7 +171,7 @@ function Signup() {
           <p className={toggle ? "text-white" : "text-gray-600"}>
             Already have an account ?
             <Link
-              to="/signup"
+              to="/login"
               className="text-indigo-600 hover:text-indigo-800 font-medium px-2"
             >
               sign in
