@@ -16,7 +16,7 @@ function Signup() {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
 
-
+  // imported values , functions and states from Authcontext
   const {signup,toggle} = useAuth();
   const navigate = useNavigate();
 

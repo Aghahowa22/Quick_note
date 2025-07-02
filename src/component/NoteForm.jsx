@@ -14,7 +14,8 @@ function NoteForm() {
 
 
   const [success, setSuccess] = useState(false);
-
+  
+  // impoted states from AUthcontext
   const {currentUser, toggle} = useAuth();
 
     const handleSubmit = async (e) => {

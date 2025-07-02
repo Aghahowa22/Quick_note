@@ -29,7 +29,7 @@ function Login() {
       navigate("/dashboard");
     } catch (err) {
       setError(
-        "Failed to create an account: " + (err.message || "Please try again")
+        "Failed! please sign up or check your sign in information " + (err.message || "")
       );
     } finally {
       setLoading(false);

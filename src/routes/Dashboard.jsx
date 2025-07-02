@@ -17,6 +17,8 @@ function Dashboard() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // imported states from Auth context
   const { currentUser,toggle } = useAuth();
 
   useEffect(() => {

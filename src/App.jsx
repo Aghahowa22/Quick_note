@@ -10,7 +10,7 @@ import { Routes, Route, Navigate, replace } from "react-router-dom";
 
 function App() {
 
-
+  // imported states from Authcontext
   const {loading, currentUser, toggle} = useAuth();
 
   if(loading) {
